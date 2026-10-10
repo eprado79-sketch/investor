@@ -1,20 +1,31 @@
-# Estado de implementación — Investor
+# Estado verificado de Investor
 
-## Implementado en la base inicial
-- Modelo de PostgreSQL segregado para remates, propiedades físicas, historial, comparables, UF, riesgos, puntuaciones, perfiles y procesos.
-- Importación estructurada de avisos de Clasificados.cl y comparables de Mercado Libre con confirmación explícita de derecho de uso, URLs originales y deduplicación por URL.
-- Cálculo determinista de valoración basado en comparables equivalentes y recientes; exige al menos 5; conserva incertidumbre; no presenta precios solicitados como ventas efectivas.
-- Motor de escenarios con precio de adjudicación editable, gastos explícitos, rentabilidad y precio máximo; garantía separada para evitar duplicaciones.
-- API y panel informativo de estado (con frontend integrado en construcción).
-- Planificador horario America/Santiago ejecutado desde el proceso Node siempre activo.
-- Conector oficial de UF CMF sujeto a credencial, sin valores predeterminados.
+## Código implementado
+- Interfaz React/Vite: panel principal, remates importados, buscador, comparador, detalle con secciones, cálculo financiero, estado de fuentes, metodología y administración.
+- API Node: estado de base de datos, oportunidades, simulación de reventa, importación controlada por token y petición de actualización.
+- Base PostgreSQL: propiedades, remates, cambios, comparables, precios históricos, cotizaciones UF, riesgos, resultados, favoritos, preferencias e informes.
+- Importación estructurada con URLs del origen y señal "extraído, no verificado", deduplicación básica y registro de cambios.
+- Valorización prudente: misma comuna/tipo, tamaño +/-20%, datos de hasta 90 días, mínimo 5, cuantiles e incertidumbre.
+- Rentabilidad calculada sobre inversión total con costos declarados y depósito no duplicado.
+- Cliente CMF UF preparado para una API Key oficial, nunca con cotización ficticia.
+- Planificación horaria de servidor por zona America/Santiago.
+- Pruebas de unidad básicas y workflow de CI añadido al repositorio.
 
-## Bloqueado hasta habilitar accesos o datos reales
-- Extracción automática de remates de Clasificados.cl: permiso técnico/legal aún no confirmado.
-- Consulta automática del inventario de Mercado Libre Chile: alcance/API/credenciales todavía no verificados en cuenta real.
-- Datos bancarios / del Poder Judicial / títulos: no hay acceso configurado.
-- Un ranking real calculado, números de remates vigentes, actualizaciones verificadas y reportes PDF: dependerán de datos comprobados.
-- Autenticación multiusuario, favoritos persistentes y análisis IA: etapas posteriores.
-- Pruebas integrales con base de datos y fuentes en producción: pendientes.
+## Validaciones
+- Comprobados manualmente casos básicos del motor de valoración y escenario financiero con el código guardado en GitHub.
+- Commit de GitHub sincronizado con proyecto Lovable Investor, sin utilizar su agente.
+- Compilación, test CI completo y pruebas end-to-end con infraestructura real: **aún sin confirmar**.
 
-No declarar operativos estos componentes antes de verificar credenciales, consultas reales y despliegue. No usar el agente Lovable. El único repositorio autorizado para el código es eprado79-sketch/investor.
+## Bloqueado o pendiente
+- Conector automático de Clasificados.cl: mecanismo de acceso autorizado sin verificar.
+- API de búsqueda del inventario inmobiliario de Mercado Libre/Portal: permisos y alcance de consulta sin verificar.
+- Base Supabase: no se han suministrado todavía claves de conexión al proceso Node, ni ejecutado la migración en un entorno configurado.
+- Actividad diaria 07:30 real: necesita servidor siempre activo, secretos y fuentes autorizadas.
+- Análisis IA y revisión judicial automáticos, puntuación 0–100, ranking real y reportes PDF: etapas posteriores, no operativas.
+- Autenticación de usuarios, guardado persistente de favoritos y perfiles: pendiente.
+- No se han importado a la nueva base de datos remates reales ni comparables.
+
+## Resguardos
+- Cuenta GitHub exclusiva eprado79-sketch/investor; no consultar ni modificar Calmy.
+- No usar agente de Lovable ni consumir créditos de IA sin permiso explícito.
+- No presentar funciones pendientes como si estuvieran operativas.

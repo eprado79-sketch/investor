@@ -7,12 +7,20 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
+# Dependencies / build artifacts
 node_modules
 dist
 dist-ssr
 *.local
 
-# Editor directories and files
+# Credentials and runtime secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Editor directories
 .vscode/*
 !.vscode/extensions.json
 .idea
